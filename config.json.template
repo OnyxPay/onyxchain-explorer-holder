@@ -1,0 +1,14 @@
+{
+  "MySqlAddress":"${MYSQL_HOST}:3306",
+  "MySqlUserName":"root",
+  "MySqlPassword":"${MYSQL_ROOT_PASSWORD}",
+  "MySqlDBName":"holder_${ONYXCHAIN_NET}",
+  "MySqlMaxConnSize":5,
+  "MySqlMaxOpenConnSize":50,
+  "MySqlConnMaxLifetime":300,
+  "OntologyRpcAddress":"${ONYXCHAIN_RPC}",
+  "HttpServerPort":${PORT},
+  "DBBatchSize":500,
+  "DBBatchTime":5,
+  "MaxQueryPageSize":100
+}
