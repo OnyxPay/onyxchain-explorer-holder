@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	ontsdk "github.com/ontio/ontology-go-sdk"
 	"testing"
+
+	ontsdk "github.com/ontio/ontology-go-sdk"
 )
 
 //Warning: before run test, should stop sync block from ontology node.
@@ -51,7 +52,7 @@ func TestAssetHolder(t *testing.T) {
 		for _, assetHolder := range assetHolders {
 			addr, err := GetAddress(assetHolder.Address)
 			if err != nil {
-				t.Errorf("GetAddress:%s error:%s", err)
+				t.Errorf("GetAddress:%s error:%s", addr, err)
 				return
 			}
 			balance, err := ontSdk.Native.Ont.BalanceOf(addr)
