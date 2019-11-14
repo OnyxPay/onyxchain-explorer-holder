@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	log4 "github.com/alecthomas/log4go"
 	"net/http"
 	"strings"
+
+	log4 "github.com/alecthomas/log4go"
 )
 
 var DefHttpSvr = NewHttpServer()
@@ -254,6 +255,8 @@ func (this *HttpServer) GetAssetHolder(req *HttpServerRequest, resp *HttpServerR
 	}
 
 	resp.Result = assetHolderPers
+
+	resp.Total = DefOntologyMgr.GetAssetHolderCount(contract)
 }
 
 type AssetBalance struct {
