@@ -23,8 +23,8 @@ const (
 	DEFAULT_HEARTBEAT_TIMEOUT_TIME    = 60 //s
 	DEFAULT_HAARTBEAT_UPDATE_INTERVAL = 10 //s
 
-	DEFAULT_UPDATE_SYNCED_BLOCK_HEIGHT_INTERVAL =  5 //s
-	DEFAULT_UPDATE_ASSET_HOLDER_COUNT_INTERVAL  =  2 //s
+	DEFAULT_UPDATE_SYNCED_BLOCK_HEIGHT_INTERVAL = 5 //s
+	DEFAULT_UPDATE_ASSET_HOLDER_COUNT_INTERVAL  = 2 //s
 )
 
 type Heartbeat struct {
@@ -91,6 +91,7 @@ type HttpServerResponse struct {
 	ErrorCode uint32      `json:"error_code"`
 	ErrorInfo string      `json:"error_info"`
 	Result    interface{} `json:"result"`
+	Total     interface{} `json:"total,omitempty"`
 }
 
 const (

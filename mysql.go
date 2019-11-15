@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"database/sql"
 	"fmt"
-	log4 "github.com/alecthomas/log4go"
-	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
+	"os"
 	"strings"
 	"time"
+
+	log4 "github.com/alecthomas/log4go"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type MySqlHelper struct {
@@ -20,6 +22,7 @@ type MySqlHelper struct {
 	MySqlMaxOpenConnSize uint32
 	MySqlConnMaxLifetime uint32
 	db                   *sql.DB
+	hide                 string
 }
 
 func NewMySqlHelper(address, username, passwd, dbName string, maxIdleConnSize, maxOpenConnSize, connMaxLiftTime uint32) *MySqlHelper {
@@ -48,6 +51,7 @@ func (this *MySqlHelper) Open() error {
 		return err
 	}
 	this.db = db
+	this.hide = os.Getenv("HIDE_ADDRESSES")
 	return nil
 }
 
@@ -216,6 +220,11 @@ func (this *MySqlHelper) GetAssetHolder(from, count int, address, contract strin
 			buf.WriteString("And ")
 		}
 		buf.WriteString("address = '" + address + "' ")
+	} else if this.hide != "" {
+		if contract != "" {
+			buf.WriteString("And ")
+		}
+		buf.WriteString("address not in (" + this.hide + ")")
 	}
 	buf.WriteString("Order By balance " + order)
 	if count == 0 {

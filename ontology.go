@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	log4 "github.com/alecthomas/log4go"
-	ontsdk "github.com/ontio/ontology-go-sdk"
-	sdkcom "github.com/ontio/ontology-go-sdk/common"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	log4 "github.com/alecthomas/log4go"
+	ontsdk "github.com/ontio/ontology-go-sdk"
+	sdkcom "github.com/ontio/ontology-go-sdk/common"
 )
 
 var DefOntologyMgr *OntologyManager
@@ -112,7 +113,7 @@ func (this *OntologyManager) initGenesisBlock() error {
 	}
 	isGenesisInit, err := this.mysqlHelper.IsGenesisInit()
 	if err != nil {
-		return fmt.Errorf("mysqlHelper.IsGenesisInit error:%s")
+		return fmt.Errorf("mysqlHelper.IsGenesisInit error:%s", err)
 	}
 	if isGenesisInit {
 		return nil
